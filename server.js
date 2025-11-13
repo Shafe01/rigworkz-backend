@@ -12,12 +12,13 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://rigworkz-app.web.app",
   "https://rigworkz-app.firebaseapp.com",
+  "https://rigworkz.xyz",
+  "https://www.rigworkz.xyz",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (mobile apps, curl, postman)
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.indexOf(origin) !== -1) {
@@ -44,9 +45,6 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   console.error("ERROR: MONGODB_URI not found");
-  console.error(
-    "Please create .env file with: MONGODB_URI=your_connection_string"
-  );
   process.exit(1);
 }
 
